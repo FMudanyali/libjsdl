@@ -207,10 +207,6 @@ public final class SdlGamecontroller {
         return NativeFunctions.SDL_GameControllerIsSensorEnabled(gamecontroller, type);
     }
 
-    public static float SDL_GameControllerGetSensorDataRate(SDL_GameController gamecontroller, int type) {
-        return NativeFunctions.SDL_GameControllerGetSensorDataRate(gamecontroller, type);
-    }
-
     public static int SDL_GameControllerGetSensorData(SDL_GameController gamecontroller, int type, Pointer data, int numValues) {
         return NativeFunctions.SDL_GameControllerGetSensorData(gamecontroller, type, data, numValues);
     }
@@ -229,10 +225,6 @@ public final class SdlGamecontroller {
 
     public static int SDL_GameControllerSetLED(SDL_GameController gamecontroller, byte red, byte green, byte blue) {
         return NativeFunctions.SDL_GameControllerSetLED(gamecontroller, red, green, blue);
-    }
-
-    public static int SDL_GameControllerSendEffect(SDL_GameController gamecontroller, Pointer data, int size) {
-        return NativeFunctions.SDL_GameControllerSendEffect(gamecontroller, data, size);
     }
 
     public static void SDL_GameControllerClose(SDL_GameController gamecontroller) {
@@ -395,10 +387,6 @@ public final class SdlGamecontroller {
                 SDL_GameController gamecontroller,
                 @MagicConstant(valuesFromClass = SDL_SensorType.class) int type);
 
-        public static native float SDL_GameControllerGetSensorDataRate(
-                SDL_GameController gamecontroller,
-                @MagicConstant(valuesFromClass = SDL_SensorType.class) int type);
-
         public static native int SDL_GameControllerGetSensorData(
                 SDL_GameController gamecontroller,
                 @MagicConstant(valuesFromClass = SDL_SensorType.class) int type,
@@ -425,11 +413,6 @@ public final class SdlGamecontroller {
                 byte red,
                 byte green,
                 byte blue);
-
-        public static native int SDL_GameControllerSendEffect(
-                SDL_GameController gamecontroller,
-                Pointer data,
-                int size);
 
         public static native void SDL_GameControllerClose(
                 SDL_GameController gamecontroller);

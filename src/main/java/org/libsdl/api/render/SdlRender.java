@@ -266,11 +266,11 @@ public final class SdlRender {
             int count);
 
     public static native int SDL_RenderCopy(
-            SDL_Renderer renderer,
-            SDL_Texture texture,
-            SDL_Rect srcrect,
-            SDL_Rect dstrect);
-
+        SDL_Renderer renderer,
+        SDL_Texture texture,
+        SDL_Rect srcrect,
+        SDL_Rect dstrect);
+            
     public static native int SDL_RenderCopyEx(
             SDL_Renderer renderer,
             SDL_Texture texture,

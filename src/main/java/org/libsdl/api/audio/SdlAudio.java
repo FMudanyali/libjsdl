@@ -178,8 +178,6 @@ public final class SdlAudio {
 
         public static native String SDL_GetAudioDeviceName(int index, int iscapture);
 
-        public static native int SDL_GetAudioDeviceSpec(int index, int iscapture, SDL_AudioSpec spec);
-
         public static native SDL_AudioDeviceID SDL_OpenAudioDevice(String device, int iscapture, SDL_AudioSpec desired, SDL_AudioSpec obtained, int allowed_changes);
 
         @MagicConstant(valuesFromClass = SDL_AudioStatus.class)

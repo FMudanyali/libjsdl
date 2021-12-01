@@ -209,10 +209,6 @@ public final class SdlSurface {
         return NativeFunctions.SDL_SoftStretch(src, srcrect, dst, dstrect);
     }
 
-    public static int SDL_SoftStretchLinear(SDL_Surface src, SDL_Rect srcrect, SDL_Surface dst, SDL_Rect dstrect) {
-        return NativeFunctions.SDL_SoftStretchLinear(src, srcrect, dst, dstrect);
-    }
-
     public static int SDL_BlitScaled(SDL_Surface src, SDL_Rect srcrect, SDL_Surface dst, SDL_Rect dstrect) {
         return NativeFunctions.SDL_BlitScaled(src, srcrect, dst, dstrect);
     }
@@ -423,12 +419,6 @@ public final class SdlSurface {
                 SDL_Rect dstrect);
 
         public static native int SDL_SoftStretch(
-                SDL_Surface src,
-                SDL_Rect srcrect,
-                SDL_Surface dst,
-                SDL_Rect dstrect);
-
-        public static native int SDL_SoftStretchLinear(
                 SDL_Surface src,
                 SDL_Rect srcrect,
                 SDL_Surface dst,

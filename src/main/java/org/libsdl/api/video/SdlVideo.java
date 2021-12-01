@@ -211,10 +211,6 @@ public final class SdlVideo {
         NativeFunctions.SDL_SetWindowResizable(window, resizable);
     }
 
-    public static void SDL_SetWindowAlwaysOnTop(SDL_Window window, boolean on_top) {
-        NativeFunctions.SDL_SetWindowAlwaysOnTop(window, on_top);
-    }
-
     public static void SDL_ShowWindow(SDL_Window window) {
         NativeFunctions.SDL_ShowWindow(window);
     }
@@ -259,24 +255,8 @@ public final class SdlVideo {
         return NativeFunctions.SDL_SetWindowGrab(window, grabbed);
     }
 
-    public static void SDL_SetWindowKeyboardGrab(SDL_Window window, boolean grabbed) {
-        NativeFunctions.SDL_SetWindowKeyboardGrab(window, grabbed);
-    }
-
-    public static void SDL_SetWindowMouseGrab(SDL_Window window, boolean grabbed) {
-        NativeFunctions.SDL_SetWindowMouseGrab(window, grabbed);
-    }
-
     public static boolean SDL_GetWindowGrab(SDL_Window window) {
         return NativeFunctions.SDL_GetWindowGrab(window);
-    }
-
-    public static boolean SDL_GetWindowKeyboardGrab(SDL_Window window) {
-        return NativeFunctions.SDL_GetWindowKeyboardGrab(window);
-    }
-
-    public static boolean SDL_GetWindowMouseGrab(SDL_Window window) {
-        return NativeFunctions.SDL_GetWindowMouseGrab(window);
     }
 
     public static SDL_Window SDL_GetGrabbedWindow() {
@@ -317,10 +297,6 @@ public final class SdlVideo {
 
     public static int SDL_SetWindowHitTest(SDL_Window window, SDL_HitTest callback, Pointer callbackData) {
         return NativeFunctions.SDL_SetWindowHitTest(window, callback, callbackData);
-    }
-
-    public static int SDL_FlashWindow(SDL_Window window, @MagicConstant(valuesFromClass = SDL_FlashOperation.class) int operation) {
-        return NativeFunctions.SDL_FlashWindow(window, operation);
     }
 
     public static void SDL_DestroyWindow(SDL_Window window) {
@@ -579,10 +555,6 @@ public final class SdlVideo {
                 SDL_Window window,
                 boolean resizable);
 
-        public static native void SDL_SetWindowAlwaysOnTop(
-                SDL_Window window,
-                boolean on_top);
-
         public static native void SDL_ShowWindow(
                 SDL_Window window);
 
@@ -621,21 +593,7 @@ public final class SdlVideo {
                 SDL_Window window,
                 boolean grabbed);
 
-        public static native void SDL_SetWindowKeyboardGrab(
-                SDL_Window window,
-                boolean grabbed);
-
-        public static native void SDL_SetWindowMouseGrab(
-                SDL_Window window,
-                boolean grabbed);
-
         public static native boolean SDL_GetWindowGrab(
-                SDL_Window window);
-
-        public static native boolean SDL_GetWindowKeyboardGrab(
-                SDL_Window window);
-
-        public static native boolean SDL_GetWindowMouseGrab(
                 SDL_Window window);
 
         public static native SDL_Window SDL_GetGrabbedWindow();
@@ -680,10 +638,6 @@ public final class SdlVideo {
                 SDL_Window window,
                 SDL_HitTest callback,
                 Pointer callbackData);
-
-        public static native int SDL_FlashWindow(
-                SDL_Window window,
-                @MagicConstant(valuesFromClass = SDL_FlashOperation.class) int operation);
 
         public static native void SDL_DestroyWindow(
                 SDL_Window window);

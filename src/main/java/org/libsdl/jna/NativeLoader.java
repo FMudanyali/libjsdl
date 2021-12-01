@@ -22,6 +22,6 @@ public final class NativeLoader {
         Map<String, Object> options = new HashMap<>();
         options.put(OPTION_STRING_ENCODING, "UTF-8");
         options.put(OPTION_CLASSLOADER, NativeLoader.class.getClassLoader());
-        return NativeLibrary.getInstance("sdl2", options);
+        return NativeLibrary.getInstance("SDL2", options);
     }
 }

@@ -25,6 +25,7 @@ public final class SdlTest {
 
     @Test
     public void control() {
+        System.setProperty("jna.library.path", "/opt/local/lib");
         Sdl.SDL_Init(0);
         Sdl.SDL_Quit();
     }

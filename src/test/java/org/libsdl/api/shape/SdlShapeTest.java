@@ -53,69 +53,66 @@ public class SdlShapeTest {
 
         SDL_Window window = SDL_CreateShapedWindow("Test window", SDL_WINDOWPOS_CENTERED(), SDL_WINDOWPOS_CENTERED(), 400, 300, SDL_WINDOW_SHOWN);
         System.out.println("Press SPACE to set shape");
+        System.out.printf("Window address: 0x%x%n", window);
 
         final AtomicBoolean shouldRun = new AtomicBoolean(true);
 
-        new Thread(() -> {
-            try {
-                Thread.sleep(5000L);
-                shouldRun.set(false);
-            } catch (InterruptedException e) {
-                throw new CancellationException();
-            }
-        }).start();
-
-        SDL_Event evt = new SDL_Event();
-        while (shouldRun.get()) {
-            while (SDL_PollEvent(evt) != 0) {
-                switch (evt.type) {
-                    case SDL_QUIT:
-                        shouldRun.set(false);
-                        break;
-                    case SDL_KEYDOWN:
-                        if (evt.key.keysym.sym == SDLK_SPACE) {
-                            SDL_WindowShapeMode shapeMode1 = new SDL_WindowShapeMode();
-                            shapeMode1.mode = ShapeModeColorKey;
-                            shapeMode1.parameters.setType("colorKey");
-                            shapeMode1.parameters.colorKey = new SDL_Color();
-                            shapeMode1.parameters.colorKey.r = 0;
-                            shapeMode1.parameters.colorKey.g = 0;
-                            shapeMode1.parameters.colorKey.b = 0;
-                            shapeMode1.parameters.colorKey.a = (byte) 255;
-                            int result = SDL_SetWindowShape(window, shape, shapeMode1);
-                            if (result == SDL_INVALID_SHAPE_ARGUMENT) {
-                                System.out.println("SDL_INVALID_SHAPE_ARGUMENT");
-                                System.out.println(SDL_GetError());
-                            } else if (result == SDL_NONSHAPEABLE_WINDOW) {
-                                System.out.println("SDL_NONSHAPEABLE_WINDOW");
-                                System.out.println(SDL_GetError());
-                            } else {
-                                System.out.println("UNKNOWN ERROR");
-                                System.out.println(SDL_GetError());
-                            }
-
-                            SDL_WindowShapeMode shapeMode2 = new SDL_WindowShapeMode();
-                            int result2 = SDL_GetShapedWindowMode(window, shapeMode2);
-                            if (result2 == 0) {
-                                System.out.println("Shape mode: " + shapeMode2.mode);
-                                System.out.println("Shape parameters: " + shapeMode2.parameters);
-                            } else if (result2 == SDL_NONSHAPEABLE_WINDOW) {
-                                System.out.println("SDL_NONSHAPEABLE_WINDOW");
-                                System.out.println(SDL_GetError());
-                            } else if (result2 == SDL_WINDOW_LACKS_SHAPE) {
-                                System.out.println("SDL_WINDOW_LACKS_SHAPE");
-                                System.out.println(SDL_GetError());
-                            } else {
-                                System.out.println("UNKNOWN ERROR");
-                                System.out.println(SDL_GetError());
-                            }
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                SDL_Event evt = new SDL_Event();
+                while (shouldRun.get()) {
+                    while (SDL_PollEvent(evt) != 0) {
+                        switch (evt.type) {
+                            case SDL_QUIT:
+                                shouldRun.set(false);
+                                break;
+                            case SDL_KEYDOWN:
+                                if (evt.key.keysym.sym == SDLK_SPACE) {
+                                    SDL_WindowShapeMode shapeMode1 = new SDL_WindowShapeMode();
+                                    shapeMode1.mode = ShapeModeColorKey;
+                                    shapeMode1.parameters.setType("colorKey");
+                                    shapeMode1.parameters.colorKey = new SDL_Color();
+                                    shapeMode1.parameters.colorKey.r = 0;
+                                    shapeMode1.parameters.colorKey.g = 0;
+                                    shapeMode1.parameters.colorKey.b = 0;
+                                    shapeMode1.parameters.colorKey.a = (byte) 255;
+                                    int result = SDL_SetWindowShape(window, shape, shapeMode1);
+                                    if (result == SDL_INVALID_SHAPE_ARGUMENT) {
+                                        System.out.println("SDL_INVALID_SHAPE_ARGUMENT");
+                                        System.out.println(SDL_GetError());
+                                    } else if (result == SDL_NONSHAPEABLE_WINDOW) {
+                                        System.out.println("SDL_NONSHAPEABLE_WINDOW");
+                                        System.out.println(SDL_GetError());
+                                    } else {
+                                        System.out.println("UNKNOWN ERROR");
+                                        System.out.println(SDL_GetError());
+                                    }
+        
+                                    SDL_WindowShapeMode shapeMode2 = new SDL_WindowShapeMode();
+                                    int result2 = SDL_GetShapedWindowMode(window, shapeMode2);
+                                    if (result2 == 0) {
+                                        System.out.println("Shape mode: " + shapeMode2.mode);
+                                        System.out.println("Shape parameters: " + shapeMode2.parameters);
+                                    } else if (result2 == SDL_NONSHAPEABLE_WINDOW) {
+                                        System.out.println("SDL_NONSHAPEABLE_WINDOW");
+                                        System.out.println(SDL_GetError());
+                                    } else if (result2 == SDL_WINDOW_LACKS_SHAPE) {
+                                        System.out.println("SDL_WINDOW_LACKS_SHAPE");
+                                        System.out.println(SDL_GetError());
+                                    } else {
+                                        System.out.println("UNKNOWN ERROR");
+                                        System.out.println(SDL_GetError());
+                                    }
+                                }
+                                break;
+                            default:
+                                break;
                         }
-                        break;
-                    default:
-                        break;
+                    }
                 }
             }
-        }
+        }).start();
 
         SDL_DestroyWindow(window);
         SDL_FreeSurface(shape);
