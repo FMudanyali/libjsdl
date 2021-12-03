@@ -2,7 +2,6 @@ package org.libsdl.api.shape;
 
 import java.net.URISyntaxException;
 import java.nio.file.Path;
-import java.util.concurrent.CancellationException;
 import java.util.concurrent.atomic.AtomicBoolean;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
